@@ -16,14 +16,17 @@ import model.Player;
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			             HttpServletResponse response)
+			       throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		int user = Integer.parseInt(request.getParameter("hand"));
 		int com = (int) (Math.random() * 3);
 		Player player = new Player(user, com);
-		String winner = Hantei.exec(user, com);
-		player.setWinner(winner);
+		Hantei.exec(player);
+		
+		request.setAttribute("player", player);
 
 		String url = "/WEB-INF/jsp/result.jsp";
 		RequestDispatcher dispatcher =
