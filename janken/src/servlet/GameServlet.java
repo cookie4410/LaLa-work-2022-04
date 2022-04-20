@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Hantei;
-import model.Player;
+import model.PlayResult;
 
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
@@ -23,10 +23,10 @@ public class GameServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		int user = Integer.parseInt(request.getParameter("hand"));
 		int com = (int) (Math.random() * 3);
-		Player player = new Player(user, com);
-		Hantei.exec(player);
+		PlayResult result = new PlayResult(user, com);
+		Hantei.exec(result);
 		
-		request.setAttribute("player", player);
+		request.setAttribute("result", result);
 
 		String url = "/WEB-INF/jsp/result.jsp";
 		RequestDispatcher dispatcher =
