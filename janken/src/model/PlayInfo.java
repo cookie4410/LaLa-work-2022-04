@@ -2,14 +2,14 @@ package model;
 
 import java.io.Serializable;
 
-public class Player implements Serializable {
+public class PlayInfo implements Serializable {
 	private int user;
 	private int com;
 	private String winner;
 	
-	public Player () {}
+	public PlayInfo () {}
 	
-	public Player(int user, int com) {
+	public PlayInfo(int user, int com) {
 		this.user = user;
 		this.com = com;
 	}

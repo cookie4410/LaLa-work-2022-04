@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+
+
+body, h1, h2, h3, p, ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.icon {
+	width: 24px;
+	vertical-align: middle;
+}
+
+header {
+	background-color: lightblue;
+	border-bottom: solid 1px #ddd;
+	margin-bottom: 20px;
+	padding: 10px 0;
+}
+
+footer {
+	background-color: lightblue;
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	padding: 10px 0;
+}
+
+header h1 {
+	font-size: 1.5rem;
+	width: 90%;
+	margin: 0 auto;
+}
+
+#content {
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 55px;
+}
+
+nav {
+	text-align: right;
+}
+
+main {
+	position: relative;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	border: solid 1px #ddd;
+}
+
+td {
+	padding: 10px 10px;
+}
+
+.no-border {
+	border: none;
+}
+
+.no-button {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+#pagenation {
+	margin: 20px 0;
+}
+
+#pagenation ul {
+	display: flex;
+	justify-content: center;
+}
+
+#pagenation li {
+	margin: 0 5px;
+}
+
+/*******************
+newEmp.jsp
+*******************/
+form td {
+	padding: 5px 10px;
+}
+
+.indata {
+	font-size:1.2rem;
+}
+
+.submit-btn,
+.submit2-btn,
+.cancel-btn {
+	width: 100px;
+	position: absolute;
+	margin-top: 30px;
+}
+
+.submit-btn {
+	right: 130px;
+}
+
+.submit2-btn {
+	right: 240px;
+}
+
+.cancel-btn {
+	right: 20px;
+}
+
+/*******************
+aside
+*******************/
+.search-box {
+	height: 26px;
+}
+
+#menu-line {
+	height: 10px;
+	position: relative;
+}
+
+#menu li {
+	margin-bottom: 10px;
+}
+
+#menu-btn {
+	position: absolute;
+	right: 0;
+	top: -16px;
+}
+
+.no-disp {
+	display: none;
+}
+
+.disp {
+	display: block;
+}
+
+
+@media screen and (min-width: 768px) {
+	#content {
+		display: flex;
+		flex-direction: row-reverse;
+		width: 80%;
+	}
+	
+	#subContent {
+		flex-basis: 30%;
+	}
+	
+	main {
+		flex-basis: 70%;
+	}
+	
+	nav {
+		text-align: left;
+	}
+	
+	#menu-btn {
+		display: none;
+	}
+	
+	.no-disp {
+		display: block;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	header h1 {
+		width: 80%;
+	}
+	
+	#content {
+		width: 70%;
+	}
+}

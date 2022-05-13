@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+html {
+  touch-action: manipulation;
+}
+
+body {
+	background-color: #202124;
+	color: #E8EAED;
+	margin: 0;
+}
+
+body * {
+	user-select:none
+}
+
+/*******************
+	ヘッダー
+********************/
+header {
+	background-color: #2A2B2E;
+	border-bottom: solid 1px #5F6368;
+	height: 120px;
+	position: relative;
+	z-index: 999999999;
+}
+
+h1 {
+	font-size: 80px;
+	margin: 0;
+	padding-left: 0.5em;
+}
+
+/*******************
+	メニュー
+********************/
+#subContent {
+	position: fixed;
+	top: 0;
+	left: -600px;
+	width: 600px;
+	height: 100vh;
+	background-color: #2A2B2E;
+	border-right: solid 1px #5F6368;
+	font-size: 60px;
+	z-index: 999999;
+	transition: all .4s;
+}
+
+#subContent.active {
+	left: 0px;
+}
+
+#subContent::before {
+	content: "";
+	width: 100%;
+	height: 120px;
+	display: block;
+	border-bottom: solid 1px #5F6368;
+}
+
+#mask {
+	background-color: #000;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: all .4s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#mask.active {
+	visibility: visible;
+    opacity: 0.5;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+#menu li {
+	border-bottom: solid 1px #5F6368;
+	width: 600px;
+	height: 100px;
+	text-align: center;
+	list-style: none;
+}
+
+#menu li a {
+	color: #E8EAED;
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-decoration: none;
+	line-height: 1.7em;
+}
+
+#menuBtn {
+	position: fixed;
+    height: 100px;
+    width: 100px;
+    left: 0px;
+    bottom: 100px;
+    background-color: #2A2B2E;
+    border-radius: 0 20px 20px 0;
+    border: solid 1px #5F6368;
+    transition: all .4s;
+}
+
+#menuBtn.active {
+	left: 600px
+}
+
+#menuTrigger,
+#menuTrigger span {
+  display: inline-block;
+  transition: all .4s .4s;
+  box-sizing: border-box;
+}
+
+#menuTrigger {
+  position: relative;
+  width: 50px;
+  height: 44px;
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  top: 5px;
+  left: 22px;
+}
+#menuTrigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+#menuTrigger span:nth-of-type(1) {
+  top: 0;
+}
+#menuTrigger span:nth-of-type(2) {
+  top: 20px;
+}
+#menuTrigger span:nth-of-type(3) {
+  bottom: 0;
+}
+
+/*******************
+	メニューボタンアニメーション
+********************/
+#menuTrigger.active {
+  transform: rotate(360deg);
+}
+#menuTrigger.active span:nth-of-type(1) {
+  transform: translateY(20px) rotate(-45deg);
+}
+#menuTrigger.active span:nth-of-type(2) {
+  transform: translateY(0) rotate(45deg);
+}
+#menuTrigger.active span:nth-of-type(3) {
+  opacity: 0;
+}
+
+/*******************
+	フッター
+********************/
+footer {
+	background-color: #383838;
+	font-size: 30px;
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	padding: 10px 0;
+	z-index: 999999999;
+}

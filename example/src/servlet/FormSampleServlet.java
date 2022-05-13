@@ -15,7 +15,7 @@ public class FormSampleServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータの文字コードを指定
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		// リクエストパラメータを取得
 		String name = request.getParameter("name");

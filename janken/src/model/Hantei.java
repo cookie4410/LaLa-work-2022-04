@@ -1,8 +1,10 @@
 package model;
 
 public class Hantei {
-	public static String exec(int user, int com) {
-		String result = "";	
+	public static void exec(PlayInfo pinfo) {
+		int user = pinfo.getUser();
+		int com = pinfo.getCom();
+		String result = "";
 		if (user == com) {
 			result = "draw";
 		} else if ((user + 1) % 3 == com) {
@@ -10,6 +12,6 @@ public class Hantei {
 		} else {
 			result = "com";
 		}
-		return result;
+		pinfo.setWinner(result);
 	}
 }

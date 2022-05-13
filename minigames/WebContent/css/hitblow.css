@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+main {
+	position: relative;
+	min-height: calc(100vh - 170px);
+}
+
+.ripple {
+	position: relative;
+}
+
+.ripple.active::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	margin-top: -50%;
+	margin-left:-50%;
+	content: "";
+	background: #98999c;
+	border-radius: 100%;
+	opacity: 0;
+	animation: ripple 0.3s 1 ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 1;
+    transform: scale(0.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.0);
+  }
+}
+
+/*******************background-color: #48494c;
+	初期画面
+********************/
+#levelFormWrapper {
+	transition: all .4s;
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	margin: 170px auto;
+    left: 0;
+    right: 0;
+}
+
+#levelFormWrapper.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+#numFormWrapper {
+	transition: all .4s;
+	visibility: hidden;
+	opacity: 0;
+	margin: auto;
+	position: absolute;
+	height: fit-content;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#numFormWrapper.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+#levelForm {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#levelForm h2 {
+	font-size: 60px;
+    border-bottom: solid 3px;
+}
+
+.levelBtn {
+	height: 160px;
+    width: 500px;
+    border-radius: 70px;
+    font-size: 80px;
+    margin-bottom: 40px;
+    background-color: #2A2B2E;
+    border: 3px solid #5F6368;
+    color: #E8EAED;
+}
+
+/*******************
+	ゲーム画面
+********************/
+#numPanelList,
+#ansPanelList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 0;
+	margin: 0 auto;
+	width: 600px;
+}
+
+#numPanelList {
+	margin-bottom: 100px
+}
+
+.panel,
+.numPanel {
+	background-color: #2A2B2E;
+    font-size: 100px;
+    text-align: center;
+    line-height: 1.68em;
+    height: 160px;
+    width: 160px;
+    border: 3px solid #5F6368;
+    border-radius: 50%;
+    margin: 16px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#backspaceBtn {
+	background-color: #ff1744;
+	border: 3px solid #ff4569;
+}
+
+#submitBtn {
+	background-color: #4caf50;
+	border: 3px solid #6fbf73; 
+}
+
+#ansPanelList {
+	margin-bottom: 80px;
+}
+
+.ansPanel {
+	font-size: 150px;
+	text-align: center;
+	line-height: 1.3em;
+	width: 150px;
+	height: 180px;
+	border-bottom: 2px solid #5F6368;
+	margin: 10px;
+	position: relative;
+}
+
+#selected::after {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	content: "";
+	width: 110px;
+	height: 140px;
+	background-color: rgba(100, 100, 100, 0.5);
+	animation: fadeInOut 1s ease-in infinite alternate forwards running;
+}
+
+@keyframes fadeInOut {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.material-symbols-rounded {
+	font-size: 110px;
+	color: #ddd;
+    line-height: 1.4em;
+}
