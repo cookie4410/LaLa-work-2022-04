@@ -7,11 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Hit and Blow</title>
- <!-- 
-<link rel="preload" as="font" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
- -->
  
- <link rel="preload" as="style" onload="this.rel = 'stylesheet'" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="preload" as="style" onload="this.rel = 'stylesheet'" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/hitblow.css">
@@ -26,13 +23,14 @@
 	<main>
 	<div id="levelFormWrapper" class="active">
 		<div id="levelForm">
-			<h2>レベルを選択</h2>
+			<h2 class="guideText">Choose the level.</h2>
 			<% for(Level level : Level.values()){ %>
-				<button class="levelBtn"><%=level %></button>
+				<button class="levelBtn ripple"><%=level %></button>
 			<% } %>
 		</div>
 	</div>
 	<div id="numFormWrapper">
+		<h2 class="guideText">Enter your secret code.</h2>
 		<div id="ansPanelList">
 			<div class="ansPanel" id="selected"></div>
 			<div class="ansPanel"></div>
@@ -48,14 +46,14 @@
 			<div class="panel numPanel ripple">7</div>
 			<div class="panel numPanel ripple">8</div>
 			<div class="panel numPanel ripple">9</div>
-			<div class="panel material-symbols-rounded" id="backspaceBtn">keyboard_backspace</div>
+			<div class="panel ripple material-symbols-rounded" id="backspaceBtn">keyboard_backspace</div>
 			<div class="panel numPanel ripple">0</div>
 			<form action="<%=request.getContextPath()%>/hitblow" method="post" onsubmit="return checkSubmit()">
-				<input type="hidden" id="levelInput" />
-				<input type="hidden" id="numInput" />
-				<button type="submit" class="panel material-symbols-rounded" id="submitBtn">check</button>
+				<input name="level" type="hidden" id="levelInput" />
+				<input name="num" type="hidden" id="numInput" />
+				<button type="submit" class="panel ripple material-symbols-rounded" id="submitBtn">check</button>
 			</form>
-			<div class="panel material-symbols-rounded" id="changeLevelBtn">redo</div>
+			<div class="panel ripple material-symbols-rounded" id="changeLevelBtn">redo</div>
 		<!-- numPanelList -->
 		</div>
 	<!-- numFormWrapper -->
@@ -63,6 +61,8 @@
 	</main>
 	
 	<jsp:include page="../common/footer.jsp" />
-	<script src="<%=request.getContextPath()%>/js/hitblowStartup.js"></script>
+	<script src="<%=request.getContextPath()%>/js/hitblow/common.js"></script>
+	<script src="<%=request.getContextPath()%>/js/hitblow/startup.js"></script>
+	<script src="<%=request.getContextPath()%>/js/hitblow/numForm.js"></script>
 </body>
 </html>

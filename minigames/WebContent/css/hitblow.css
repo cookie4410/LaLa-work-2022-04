@@ -2,7 +2,8 @@
 
 main {
 	position: relative;
-	min-height: calc(100vh - 170px);
+	min-height: 1600px;
+    height: calc(100vh - 170px);
 }
 
 .ripple {
@@ -35,7 +36,7 @@ main {
   }
 }
 
-/*******************background-color: #48494c;
+/*******************
 	初期画面
 ********************/
 #levelFormWrapper {
@@ -43,9 +44,12 @@ main {
 	visibility: hidden;
 	opacity: 0;
 	position: absolute;
-	margin: 170px auto;
+	margin: auto;
+	height: fit-content;
     left: 0;
     right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 #levelFormWrapper.active {
@@ -77,9 +81,12 @@ main {
     align-items: center;
 }
 
-#levelForm h2 {
+.guideText {
 	font-size: 60px;
     border-bottom: solid 3px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 60px;
 }
 
 .levelBtn {
@@ -91,6 +98,21 @@ main {
     background-color: #2A2B2E;
     border: 3px solid #5F6368;
     color: #E8EAED;
+}
+
+.levelBtn.ripple.active::after {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    margin-top: -77px;
+    margin-left: -50%;
+    content: "";
+    background: #98999c;
+    border-radius: 70px;
+    opacity: 0;
+    animation: ripple 0.3s 1 ease-out;
 }
 
 /*******************
@@ -125,6 +147,46 @@ main {
     box-sizing: border-box;
 }
 
+#numFormWrapper.error {
+	animation: errorAnime .3s;
+}
+
+@keyframes errorAnime {
+    0% {
+        transform: translate(0px, 0px) rotateZ(0deg)
+    }
+    10% {
+        transform: translate(20px, 20px) rotateZ(1deg)
+    }
+    20% {
+        transform: translate(0px, 20px) rotateZ(0deg)
+    }
+    30% {
+        transform: translate(20px, 0px) rotateZ(-1deg)
+    }
+    40% {
+        transform: translate(0px, 0px) rotateZ(0deg)
+    }
+    50% {
+        transform: translate(20px, 20px) rotateZ(1deg)
+    }
+    60% {
+        transform: translate(0px, 0px) rotateZ(0deg)
+    }
+    70% {
+        transform: translate(20px, 0px) rotateZ(-1deg)
+    }
+    80% {
+        transform: translate(0px, 20px) rotateZ(0deg)
+    }
+    90% {
+        transform: translate(0px, 0px) rotateZ(0deg)
+    }
+    100% {
+        transform: translate(0px, 0px) rotateZ(0deg)
+    }
+}
+
 #backspaceBtn {
 	background-color: #ff1744;
 	border: 3px solid #ff4569;
@@ -132,7 +194,7 @@ main {
 
 #submitBtn {
 	background-color: #4caf50;
-	border: 3px solid #6fbf73; 
+	border: 3px solid #6fbf73;
 }
 
 #ansPanelList {
@@ -163,10 +225,10 @@ main {
 
 @keyframes fadeInOut {
 	0% {
-		opacity: 0;
+		opacity: 1;
 	}
 	100% {
-		opacity: 1;
+		opacity: 0;
 	}
 }
 
@@ -174,4 +236,94 @@ main {
 	font-size: 110px;
 	color: #ddd;
     line-height: 1.4em;
+}
+
+/*******************
+	ログ画面
+********************/
+#logPanel {
+	position: fixed;
+	bottom: -80vh;
+	box-sizing: border-box;
+	width: 100vw;
+	height: 80vh;
+	border-top: solid 3px #5F6368;
+	background-color: #2A2B2E;
+	transition: bottom .6s ease-out;
+	z-index: 99999999;
+}
+
+#logPanel.active {
+	bottom: 0;
+}
+
+#logHeader {
+	font-size: 72px;
+	width: fit-content;
+	margin: 72px auto 30px auto;
+	border-bottom: solid 3px;
+}
+
+#logWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+#logWrapper>div {
+	box-sizing: border-box;
+	width: 50%;
+	height: calc(80vh - 540px);
+	margin-top: 24px;
+}
+
+#logWrapper>div>p {
+	font-size: 51px;
+	margin: 0;
+	text-align: center;
+}
+
+#logWrapper dl {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: calc(100% - 80px);
+}
+#logWrapper dl dt{
+	position: relative;
+	margin-top: 20px;
+}
+
+#logWrapper dl dt::before {
+	content: "";
+	height: 3px;
+	width: 50%;
+	background-color: #5F6368;
+	position: absolute;
+	top: -10px;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+#logWrapper dl::-webkit-scrollbar {
+  width: 7px;
+}
+#logWrapper dl::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 5px;
+}
+#logWrapper dl::-webkit-scrollbar-track {
+  background: #555;
+}
+
+#logWrapper dl * {
+	font-size: 42px;
+	text-align: center;
+	margin-inline-start: 0;
+}
+
+#logCloseBtn {
+    position: absolute;
+	left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 100px;
 }

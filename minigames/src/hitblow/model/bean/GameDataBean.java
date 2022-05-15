@@ -7,6 +7,9 @@ public class GameDataBean implements Serializable {
 	private int comNum;
 	
 	public GameDataBean(){}
+	public GameDataBean(int userNum){
+		this.userNum = userNum;
+	}
 
 	public int getUserNum() {
 		return userNum;
