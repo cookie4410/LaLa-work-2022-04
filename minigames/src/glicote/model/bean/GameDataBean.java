@@ -9,8 +9,6 @@ public class GameDataBean {
 	public GameDataBean() {
 		this.userStep = 0;
 		this.comStep = 0;
-		this.winner = "user";
-		this.winnerHand = "ROCK";
 	}
 	
 	public int getUserStep() {

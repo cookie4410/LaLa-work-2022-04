@@ -1,6 +1,7 @@
 package glicote.servlet;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,21 +26,35 @@ public class GlicoteServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("servlet");
 		HttpSession session = request.getSession();
 		GameDataBean gameData = (GameDataBean)session.getAttribute("gameData");
-		int count = Hands.valueOf(gameData.getWinnerHand()).getText().length();;
-		System.out.println("servlet");
-		if(gameData.getWinner() == "user") {
-			gameData.setUserStep(gameData.getUserStep() + count);
-		} else if(gameData.getWinner() == "com") {
-			gameData.setComStep(gameData.getComStep() + count);
+		
+		if(gameData.getWinnerHand() != null) {
+			int count = Hands.valueOf(gameData.getWinnerHand()).getText().length();;
+			if(gameData.getWinner() == "user") {
+				gameData.setUserStep(gameData.getUserStep() + count);
+			} else if(gameData.getWinner() == "com") {
+				gameData.setComStep(gameData.getComStep() + count);
+			}
 		}
 		
-		Hands userHand = Hands.valueOf(request.getParameter("hand"));
-		int result = CoreManager.judge(userHand.getId());
+		int userHand = Hands.valueOf(request.getParameter("hand")).getId();
+		System.out.println("userHand: " + String.valueOf(userHand));
+		int comHand = new Random().nextInt(5) % 3;
+		System.out.println("comHand: " + String.valueOf(comHand));
+		String winner = CoreManager.judge(userHand, comHand);
+		gameData.setWinner(winner);
+		System.out.println("winner: " + winner);
 		
-		gameData.setWinnerHand(userHand.name());
-		System.out.println(gameData.getUserStep());
+		Hands[] values = Hands.values();
+		if(winner == "user") {
+			gameData.setWinnerHand(values[userHand].name());
+		} else if(winner == "com") {
+			gameData.setWinnerHand(values[comHand].name());
+		} else {
+			gameData.setWinnerHand(null);
+		}
 		
 		session.setAttribute("gameData", gameData);
 		String url = "/WEB-INF/jsp/glicote/glicote.jsp";

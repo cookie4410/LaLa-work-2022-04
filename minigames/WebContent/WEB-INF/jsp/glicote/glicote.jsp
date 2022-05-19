@@ -54,23 +54,21 @@
 		</div>
 		<div id="hands">
 			<% for(Hands hand : Hands.values()){ %>
-				<%=hand.getTag()%>
+				<form id="<%=hand.name()%>Form" action="<%=request.getContextPath()%>/glicote" method="post">
+					<input type="hidden" name="hand" value="<%=hand.name()%>" />
+					<div onClick="document.forms['<%=hand.name()%>Form'].submit();"><%=hand.getTag()%></div>
+				</form>
 			<% } %>
 		</div>
-		<c:out value="${gameData.userStep}" />
-		<c:out value="${gameData.winnerHand}" />
 	</div>
-	<form action="<%=request.getContextPath()%>/glicote" method="post">
-	<input type="hidden" name="hand" value="PAPER" />
-	<input type="submit" value="submit"></form>
 	</main>
-	
+
 	<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
 	<script type="text/javascript">
 		let path = "<%=request.getContextPath()%>/glicote"
 		let userStep = <c:out value="${gameData.userStep}" />;
 		let comStep = <c:out value="${gameData.comStep}" />;
-		let winnerHand = <c:out value="${gameData.winnerHand}" />;
+		let winnerHand = <c:out default="undefined" escapeXml="true" value="${empty gameData.winnerHand ? 'undefined' : gameData.winnerHand}" />;
 	</script>
 	<script src="<%=request.getContextPath()%>/js/glicote/glicote.js"></script>
 </body>
