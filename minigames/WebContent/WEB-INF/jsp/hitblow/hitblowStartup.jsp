@@ -21,7 +21,7 @@
 	<jsp:include page="../common/aside.jsp" />
 	
 	<main>
-	<div id="levelFormWrapper" class="active">
+	<div id="levelFormWrapper" class="center active">
 		<div id="levelForm">
 			<h2 class="guideText">Choose the level.</h2>
 			<% for(Level level : Level.values()){ %>
@@ -29,7 +29,7 @@
 			<% } %>
 		</div>
 	</div>
-	<div id="numFormWrapper">
+	<div id="numFormWrapper" class="center">
 		<h2 class="guideText">Enter your secret code.</h2>
 		<div id="ansPanelList">
 			<div class="ansPanel" id="selected"></div>

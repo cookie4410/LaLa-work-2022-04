@@ -25,8 +25,7 @@
 	<jsp:include page="../common/aside.jsp" />
 	
 	<main>
-
-	<c:if test="${!empty userLog.numLog[0]}">
+	
 	<div id="resultPanel" class="center active">
 		<div id="userResult" class="center active">
 			<div class="resultHeader center">
@@ -48,46 +47,50 @@
 				<span><c:out value="${comLog.blowLog[0]}" /></span></p>
 			</div>
 		</div>
-	</div>
-	</c:if>
-
-	<c:if test="${empty userLog.numLog[0]}">
-	<div id="resultPanel" class="center active">
-		<div id="startMes" class="center active">
+		<div id="gameResult" class="center">
 			<div class="resultHeader center">
-				<h2>Game Start!</h2>
+				<h2>Game Set!</h2>
+			</div>
+			<div class="result">
+				<p>The winner is...</p>
+				<p><span>
+					<c:choose>
+						<c:when test="${result == 1}">YOU!</c:when>
+						<c:when test="${result == 2}">COM!</c:when>
+						<c:when test="${result == 3}">BOTH OF YOU!</c:when>
+					</c:choose>
+				</span></p>
 			</div>
 		</div>
+	<!-- #resultPanel -->
 	</div>
-	</c:if>
-	<div id="numFormWrapper" class="center active">
-		<h2 class="guideText">Enter the guessed code.</h2>
-		<div id="ansPanelList">
-			<div class="ansPanel" id="selected"></div>
-			<div class="ansPanel"></div>
-			<div class="ansPanel"></div>
+	<div id="gamesetPanel" class="center">
+	<h2 class="popup"><span>RESULT</span></h2>
+		<div id="winlose">
+			<p class="popup"><span>
+			<c:choose>
+				<c:when test="${result == 1}">WIN!</c:when>
+				<c:when test="${result == 2}">LOSE!</c:when>
+				<c:when test="${result == 3}">DRAW!</c:when>
+			</c:choose>
+			</span></p>
 		</div>
-		<div id="numPanelList">
-			<div class="panel numPanel ripple">1</div>
-			<div class="panel numPanel ripple">2</div>
-			<div class="panel numPanel ripple">3</div>
-			<div class="panel numPanel ripple">4</div>
-			<div class="panel numPanel ripple">5</div>
-			<div class="panel numPanel ripple">6</div>
-			<div class="panel numPanel ripple">7</div>
-			<div class="panel numPanel ripple">8</div>
-			<div class="panel numPanel ripple">9</div>
-			<div class="panel ripple material-symbols-rounded" id="backspaceBtn">keyboard_backspace</div>
-			<div class="panel numPanel ripple">0</div>
-			<form action="<%=request.getContextPath()%>/hitblow" method="post" onsubmit="return checkSubmit()">
-				<input name="num" type="hidden" id="numInput" />
-				<button type="submit" class="panel ripple material-symbols-rounded" id="submitBtn">check</button>
-			</form>
+		<div id="secretCodes">
+			<h3 class="popup"><span>SECRET CODE</span></h3>
+			<p class="popup"><span>YOU: <fmt:formatNumber minIntegerDigits="3" value="${gameData.userNum}" /></span></p>
+			<p class="popup"><span>COM: <fmt:formatNumber minIntegerDigits="3" value="${gameData.comNum}" /></span></p>
+		</div>
+		<div id="durationTime">
+			<h3 class="popup"><span>DURATION TIME</span></h3>
+			<p class="popup"><span><c:out value="${time}" /></span></p>
+		</div>
+		<div id="buttons">
 			<div class="panel ripple material-symbols-rounded" id="logOpenBtn">assignment</div>
-		<!-- numPanelList -->
+			<div class="panel ripple material-symbols-rounded" id="restartBtn">refresh</div>
+			<div class="panel ripple material-symbols-rounded" id="homeBtn">home</div>
 		</div>
-	<!-- numFormWrapper -->
 	</div>
+
 	<div id="logPanel">
 	<h2 id="logHeader">History log</h2>
 		<div id="logWrapper">
@@ -122,6 +125,6 @@
 	<jsp:include page="../common/footer.jsp" />
 	<script src="<%=request.getContextPath()%>/js/hitblow/common.js"></script>
 	<script src="<%=request.getContextPath()%>/js/hitblow/numForm.js"></script>
-	<script src="<%=request.getContextPath()%>/js/hitblow/hitblow.js"></script>
+	<script src="<%=request.getContextPath()%>/js/hitblow/gameset.js"></script>
 </body>
 </html>

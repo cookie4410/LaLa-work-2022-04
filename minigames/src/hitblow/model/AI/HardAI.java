@@ -11,7 +11,7 @@ public class HardAI extends AI {
 	 * @param com - ComBean
 	 * @return target - int
 	 */
-	public static int chooseTarget(ComBean com) {
+	public int chooseTarget(ComBean com) {
 		List<Integer> targetList = Analyzer.execute(com);
 		return PoolManager.getRandomNum(targetList);
 	}

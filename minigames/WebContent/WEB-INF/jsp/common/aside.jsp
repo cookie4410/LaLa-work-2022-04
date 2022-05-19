@@ -3,7 +3,7 @@
 <aside id="subContent">
 	<nav id="menu" class="no-disp">
 		<ul>
-			<li><a href="<%=request.getContextPath()%>">ホーム</a></li>
+			<li><a href="<%=request.getContextPath()%>">Home</a></li>
 			<li><a href="<%=request.getContextPath()%>/hitblow">Hit and Blow</a></li>
 		</ul>
 	</nav>

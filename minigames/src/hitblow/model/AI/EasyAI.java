@@ -9,7 +9,7 @@ public class EasyAI extends AI {
 	 * @param com - ComBean
 	 * @return target - int
 	 */
-	public static int chooseTarget(ComBean com) {
+	public int chooseTarget(ComBean com) {
 		return PoolManager.getRandomNum(com.getAtkPool());
 	}
 }

@@ -2,8 +2,9 @@
 
 main {
 	position: relative;
-	min-height: 1600px;
-    height: calc(100vh - 170px);
+	min-height: 1560px;
+    height: calc(100vh - 180px);
+    overflow: hidden;
 }
 
 .ripple {
@@ -19,10 +20,18 @@ main {
 	margin-top: -50%;
 	margin-left:-50%;
 	content: "";
-	background: #98999c;
+	background-color: #98999c;
 	border-radius: 100%;
 	opacity: 0;
 	animation: ripple 0.3s 1 ease-out;
+}
+
+#backspaceBtn.ripple.active::after {
+	background-color: #ff616d;
+}
+
+#submitBtn.ripple.active::after {
+	background-color: #91d796;
 }
 
 @keyframes ripple {
@@ -36,13 +45,7 @@ main {
   }
 }
 
-/*******************
-	初期画面
-********************/
-#levelFormWrapper {
-	transition: all .4s;
-	visibility: hidden;
-	opacity: 0;
+.center {
 	position: absolute;
 	margin: auto;
 	height: fit-content;
@@ -50,6 +53,47 @@ main {
     right: 0;
     top: 0;
     bottom: 0;
+}
+
+/*******************
+	HowToPlay
+********************/
+#howto {
+	overflow: visible;
+	padding: 0 30px;
+}
+
+#howto>div {
+	padding-bottom: 420px;
+}
+
+#howto h2 {
+	text-align: center;
+	font-size: 100px;
+}
+
+#howto dt {
+	font-size: 42px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+
+#howto dd {
+	font-size: 36px;
+}
+
+#howto dd .panel {
+	margin-left: 50px;
+}
+
+/*******************
+	初期画面
+********************/
+#levelFormWrapper {
+	transition: all .4s;
+	visibility: hidden;
+	opacity: 0;
 }
 
 #levelFormWrapper.active {
@@ -61,13 +105,6 @@ main {
 	transition: all .4s;
 	visibility: hidden;
 	opacity: 0;
-	margin: auto;
-	position: absolute;
-	height: fit-content;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
 }
 
 #numFormWrapper.active {
@@ -327,3 +364,372 @@ main {
     margin: auto;
     bottom: 100px;
 }
+
+/*******************
+	攻撃アニメーション
+********************/
+#resultPanel {
+	transition: all .4s;
+	visibility: hidden;
+	opacity: 0;
+}
+
+#resultPanel.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+#userResult,
+#comResult,
+#startMes,
+#gameResult {
+	visibility: hidden;
+	opacity: 0;
+}
+
+#userResult.active,
+#comResult.active,
+#startMes.active,
+#gameResult.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.resultHeader {
+	text-align: center;
+    width: 100%;
+    overflow: hedden;
+    background-color: #2A2B2E;
+}
+
+.resultHeader::before,
+.resultHeader::after {
+	box-sizing: content-box;
+	background-color: #202124;
+	position: absolute;
+	margin: auto;
+	content: "";
+	height: 50%;
+	width: 100%;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}
+
+.resultHeader::before {
+	border-bottom: solid 25px;
+	top: -20px;
+}
+
+.resultHeader::after {
+	border-top: solid 25px;
+	bottom: -20px;
+}
+
+#userResult .resultHeader::before,
+#userResult .resultHeader::after {
+	animation: resultAnime 8s ease forwards;
+}
+
+#comResult .resultHeader::before,
+#comResult .resultHeader::after {
+	animation: resultAnime 8s ease 8s forwards;
+}
+
+#startMes .resultHeader::before,
+#startMes .resultHeader::after {
+	animation: startAnime 3s ease forwards;
+}
+
+@keyframes resultAnime {
+	0% {
+		height: 50%;
+	}
+	12% {
+		height: 0%;
+	}
+	88% {
+		height: 0%;
+	}
+	100% {
+		height: 50%;
+	}
+}
+
+@keyframes startAnime {
+	0% {
+		height: 50%;
+	}
+	32% {
+		height: 0%;
+	}
+	68% {
+		height: 0%;
+	}
+	100% {
+		height: 50%;
+	}
+}
+
+.resultHeader h2 {
+	font-size: 80px;
+	margin: 100px 0;
+}
+
+#userResult .resultHeader h2 {
+	animation: resultHeaderAnime 3s ease-in-out forwards;
+}
+
+#comResult .resultHeader h2 {
+	animation: resultHeaderAnime 3s ease-in-out 8s forwards;
+}
+
+#startMes .resultHeader h2 {
+	animation: resultHeaderAnime 3s ease-in-out forwards;
+}
+
+@keyframes resultHeaderAnime {
+	0% {
+		transform: translateX(500px);
+		opacity: 0;
+	}
+	40% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	60% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(-500px);
+		opacity: 0;
+	}
+}
+
+.result p {
+	position: absolute;
+	width: fit-content;
+	font-size: 70px;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+
+.result p:first-child {
+	top: -20px;
+	opacity: 0;
+}
+
+#userResult .result p:first-child {
+	animation: resultNumAnime 1.5s ease-in-out 3s forwards;
+}
+
+#comResult .result p:first-child {
+	animation: resultNumAnime 1.5s ease-in-out 11s forwards;
+}
+
+@keyframes resultNumAnime {
+	0% {
+		transform: translate(500px, -70px);
+		opacity: 0;
+		font-size: 120px;
+	}
+	50% {
+		transform: translate(0, -70px);
+		opacity: 1;
+	}
+	70% {
+		transform: translate(0, -70px);
+		font-size: 120px;
+	}
+	100% {
+		transform: translate(0, -80px);
+		opacity: 1;
+		font-size: 70px;
+	}
+}
+
+.result span {
+	display: inline-block;
+	position: absolute;
+	width: max-content;
+	opacity: 0;
+}
+
+.result p:last-child span:first-child {
+	left: -200px;
+}
+
+#userResult .result p:last-child span:first-child {
+	animation: resultHitblowAnime .3s ease-in 5s forwards;
+}
+
+#comResult .result p:last-child span:first-child {
+	animation: resultHitblowAnime .3s ease-in 13s forwards;
+}
+
+#userResult .result p:last-child span:last-child {
+	animation: resultHitblowAnime .3s ease-in 5.3s forwards;
+}
+
+#comResult .result p:last-child span:last-child {
+	animation: resultHitblowAnime .3s ease-in 13.3s forwards;
+}
+
+@keyframes resultHitblowAnime {
+	0% {
+		opacity: 0;
+		font-size: 250px;
+	}
+	80% {
+		opacity: 1;
+		font-size: 70px;
+		transform: translate(0px, 0px) rotateZ(0deg);
+	}
+	84% {
+        transform: translate(20px, 20px) rotateZ(2deg);
+    }
+    88% {
+        transform: translate(0px, 20px) rotateZ(-2deg);
+    }
+    92% {
+        transform: translate(20px, 0px) rotateZ(0deg);
+    }
+    96% {
+        transform: translate(0px, 20px) rotateZ(2deg);
+    }
+    100% {
+        transform: translate(0px, 0px) rotateZ(0deg);
+        opacity: 1;
+		font-size: 70px;
+    }
+}
+
+/*******************
+	リザルト画面
+********************/
+#gameResult .resultHeader::before,
+#gameResult .resultHeader::after {
+	animation: resultAnime 8s ease 16s forwards;
+}
+
+#gameResult .resultHeader h2 {
+	animation: resultHeaderAnime 3s ease-in-out 16s forwards;
+}
+
+#gameResult .result p:first-child {
+	animation: resultNumAnime 1.5s ease-in-out 19s forwards;
+}
+
+#gameResult .result p:last-child span:first-child {
+	animation: resultHitblowAnime .3s ease-in 21s forwards;
+}
+
+#gameResult .result p:last-child span:last-child {
+	animation: resultHitblowAnime .3s ease-in 21.3s forwards;
+	line-height: 250px;
+	margin-top: -75px;
+}
+
+#gameResult .result p:last-child {
+    display: flex;
+    justify-content: center;
+}
+
+#gameResult p span {
+	position: relative;
+	left: 0;
+	right: 0;
+}
+
+#gamesetPanel {
+	transition: all .4s;
+	visibility: hidden;
+	opacity: 0;
+	text-align: center;
+}
+
+#gamesetPanel.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+#gamesetPanel h2 {
+	font-size: 100px;
+	margin: 0;
+}
+
+#winlose p {
+	font-size: 100px;
+	margin: 0;
+    margin-bottom: 56px;
+}
+
+#secretCodes,
+#durationTime {
+	margin-bottom: 56px;
+}
+
+#secretCodes h3,
+#durationTime h3 {
+	font-size: 60px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+#secretCodes p,
+#durationTime p {
+	font-size: 50px;
+	margin: 0px;
+}
+
+#buttons {
+	transition: opacity .5s;
+	visibility: hidden;
+	opacity: 0;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	width: 600px;
+}
+
+#buttons.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	overflow: hidden;
+}
+
+.popup span {
+	position: relative;
+	bottom: -150px
+}
+
+h2.popup span {
+	animation: popup .5s ease 24.5s forwards;
+}
+
+#winlose .popup span {
+	animation: popup .5s ease 25.25s forwards;
+}
+
+#secretCodes .popup span {
+	animation: popup .5s ease 26s forwards;
+}
+
+#durationTime .popup span {
+	animation: popup .5s ease 26.75s forwards;
+}
+
+@keyframes popup {
+	0% {
+		bottom: -150px;
+	}
+	100% {
+		bottom: 0;
+	}
+}
+

@@ -11,7 +11,7 @@ import hitblow.model.manager.CoreManager;
 import hitblow.model.manager.PoolManager;
 
 public class ExpertAI extends AI {
-	public static int execute(ComBean com, GameDataBean gData) {
+	public int execute(ComBean com, GameDataBean gData) {
 		List<Integer> secPool = com.getSecPool();
 		int target;
 		if(secPool.size() == 1) {
@@ -32,12 +32,12 @@ public class ExpertAI extends AI {
 	 * @param com - ComBean
 	 * @return target - int
 	 */
-	public static int chooseTarget(ComBean com) {
+	public int chooseTarget(ComBean com) {
 		List<Integer> targetList = Analyzer.execute(com);
 		return PoolManager.getRandomNum(targetList);
 	}
 	
-	public static void giveHandicap(ComBean com, int _userNum) {
+	public void giveHandicap(ComBean com, int _userNum) {
 		List<Integer> userNum = CoreManager.num2list(_userNum);
 		List<String> numList = new ArrayList<String>(
 				Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"));

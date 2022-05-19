@@ -7,11 +7,13 @@ public class LogBean {
 	private List<String> numLog;
 	private List<String> hitLog;
 	private List<String> blowLog;
+	private List<Integer> hitblowLog;
 	
 	public LogBean() {
 		numLog = new ArrayList<>();
 		hitLog = new ArrayList<>();
 		blowLog = new ArrayList<>();
+		hitblowLog = new ArrayList<>();
 	}
 
 	public List<String> getNumLog() {
@@ -36,6 +38,14 @@ public class LogBean {
 
 	public void setBlowLog(List<String> blowLog) {
 		this.blowLog = blowLog;
+	}
+
+	public List<Integer> getHitblowLog() {
+		return hitblowLog;
+	}
+
+	public void setHitblowLog(List<Integer> hitblowLog) {
+		this.hitblowLog = hitblowLog;
 	}
 
 }

@@ -13,7 +13,7 @@ public abstract class AI {
 	 * @param com - ComBean
 	 * @return int - targetNum
 	 */
-	public static int execute(ComBean com, GameDataBean gData) {
+	public int execute(ComBean com, GameDataBean gData) {
 		List<Integer> secPool = com.getSecPool();
 		int target;
 		if(secPool.size() == 1) {
@@ -25,10 +25,14 @@ public abstract class AI {
 		} else {
 			target = chooseTarget(com);
 		}
+		if (secPool.indexOf(target) != -1) {
+            secPool.remove(secPool.indexOf(target));
+        }
+		com.getAtkPool().removeIf(n -> (n == target));
 		return target;
 	}
 	
-	public static int chooseTarget(ComBean com) {
+	public int chooseTarget(ComBean com) {
 		return 0;
 	}
 }

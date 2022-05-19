@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+#route {
+	position: relative;
+    width: 850px;
+    height: 850px;
+    margin: auto;
+    margin-top: 250px;
+    right: 0;
+    left: 0;
+}
+
+#route::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    right: 0;
+    width: 290px;
+    height: 290px;
+    border: 10px solid;
+    border-radius: 50%;
+    padding: 250px;
+	
+}
+
+.station {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #202124;
+	border: 5px solid;
+}
+
+.station:first-child::after {
+	content: "";
+    position: absolute;
+    width: 106px;
+    left: -28px;
+    top: 22px;
+    border-top: 6px solid;
+}
+
+#hands {
+	position: absolute;
+    top: 720px;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: auto;
+}
+
+#hands i {
+	margin: 0 20px;
+}

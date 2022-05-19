@@ -5,10 +5,12 @@ import java.io.Serializable;
 public class GameDataBean implements Serializable {
 	private int userNum;
 	private int comNum;
+	private long startAt;
 	
 	public GameDataBean(){}
 	public GameDataBean(int userNum){
 		this.userNum = userNum;
+		this.startAt = System.currentTimeMillis();
 	}
 
 	public int getUserNum() {
@@ -25,5 +27,11 @@ public class GameDataBean implements Serializable {
 
 	public void setComNum(int comNum) {
 		this.comNum = comNum;
+	}
+	public long getStartAt() {
+		return startAt;
+	}
+	public void setStartAt(long startAt) {
+		this.startAt = startAt;
 	}
 }

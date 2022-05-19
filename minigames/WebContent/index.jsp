@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>ミニゲーム集</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<script src="<%=request.getContextPath()%>/js/common/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<header>
@@ -18,6 +19,7 @@
 		<dl>
 			<dt><a href="/minigames/hitblowStart">Hit and Blow</a></dt>
 			<dd>CPUと対戦する数当てゲーム</dd>
+			<dd><a href="/minigames/hitblowHowto">How to play</a></dd>
 		</dl>
 	</main>
 	
